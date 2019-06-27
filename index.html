@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Cackaa</title>
+    <link rel="stylesheet" href="css/signinout.css">
+    <link rel="stylesheet" href="css/bars.css">
+    <link rel="stylesheet" href="css/clock.css">
+    <link rel="stylesheet" href="css/socket_io.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button">Authorize</button>
+    <button id="signout_button">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <div id="bars">
+    </div>
+
+    <!-- <div class="arc-container">
+      <svg id="arcs" xmlns="http://www.w3.org/2000/svg">
+      </svg>
+    </div> -->
+
+    <div class="clock">
+      <div class="face">
+        <div id="lines">
+        </div>
+        <div class="numbers">
+          <div id="one"><p>13</p></div>
+          <div id="two"><p>14</p></div>
+          <div id="three"><p>15</p></div>
+          <div id="four"><p>16</p></div>
+          <div id="five"><p>17</p></div>
+          <div id="six"><p>18</p></div>
+          <div id="seven"><p>7</p></div>
+          <div id="eight"><p>8</p></div>
+          <div id="nine"><p>9</p></div>
+          <div id="ten"><p>10</p></div>
+          <div id="eleven"><p>11</p></div>
+          <div class="tolvern" id="twelve"><p>12</p></div>
+        </div>
+
+        <div class="arc-container">
+          <svg id="arcs" xmlns="http://www.w3.org/2000/svg">
+            <!-- <path id="arc1" fill="none" stroke="blue" stroke-width="10" /> -->
+          </svg>
+        </div>
+
+
+        <div class="hands">
+          <div id="hour"><div class="hour_tip"></div></div>
+          <div id="min"></div>
+          <div id="sec"></div>
+        </div>
+
+        <div class="face-center"></div>
+        <div class="face-shadow"></div>
+
+      </div>
+    </div>
+
+    <script src="js/access.js" ></script>
+    <script defer src="js/clock.js"></script>
+    <script src="js/arcs.js" ></script>
+    <script src="js/calendar.js" ></script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(e){
+          e.preventDefault(); // prevents page reloading
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('chat message', function(msg){
+          $('#messages').append($('<li>').text(msg));
+        });
+      });
+    </script>
+  </body>
+</html>
