@@ -25,15 +25,17 @@
     <div id="bars">
     </div>
 
-    <!-- <div class="arc-container">
-      <svg id="arcs" xmlns="http://www.w3.org/2000/svg">
-      </svg>
-    </div> -->
-
     <div class="clock">
-      <div id="hole">
-        <div id="bird"></div>
+
+      <div class="bird-box">
+        <div id="hole">
+          <div id="bird"></div>
+        </div>
+        <div id="lid" onclick="moveLid()">
+        </div>
+        <div class="lid-nail"></div>
       </div>
+
       <div class="face">
         <div id="lines">
         </div>
@@ -83,19 +85,6 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      $(function () {
-        var socket = io();
-        $('form').submit(function(e){
-          e.preventDefault(); // prevents page reloading
-          socket.emit('chat message', $('#m').val());
-          $('#m').val('');
-          return false;
-        });
-        socket.on('chat message', function(msg){
-          $('#messages').append($('<li>').text(msg));
-        });
-      });
-    </script>
+    <script src="js/socket.js" ></script>
   </body>
 </html>
