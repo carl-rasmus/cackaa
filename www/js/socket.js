@@ -17,20 +17,29 @@
 
 $(function () {
   var socket = io();
-  $('form').submit(function(e){
-    e.preventDefault(); // prevents page reloading
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
+  $('#lid').click(function(e){
+    socket.emit('chat message');
   });
   socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    $('#lid').toggleClass('lid-rotate');
+    $('.birdSound').trigger("play");
   });
 });
 
-
-  function moveLid() {
-    var socket = io();
-    var lid = document.getElementById('lid');
-    lid.classList.add("lid-rotate");
-  }
+// function birdChime(){
+//   var socket = io();
+//   var lid = document.getElementById('lid');
+//   function clickLid(){
+//     socket.emit('chat message');
+//   }
+//   socket.on('chat message', function moveLid(){
+//     lid.classList.add("lid-rotate");
+//   });
+// }
+  //
+  //
+  // function moveLid() {
+  //   var socket = io();
+  //   var lid = document.getElementById('lid');
+  //   lid.classList.add("lid-rotate");
+  // }

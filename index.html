@@ -11,10 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
 
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button">Authorize</button>
@@ -31,9 +27,10 @@
         <div id="hole">
           <div id="bird"></div>
         </div>
-        <div id="lid" onclick="moveLid()">
+        <div id="lid">
         </div>
         <div class="lid-nail"></div>
+        <audio src="whistle.mp3" class="birdSound"></audio>
       </div>
 
       <div class="face">
