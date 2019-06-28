@@ -1,17 +1,11 @@
-// $(function() {
+// $(function () {
 //   var socket = io();
-//   var inputField = document.getElementById('m');
-//   var messageField = document.getElementById('messages');
-//   var chatItem = document.createElement('li');
-//
-//   $('form').submit(function(e){
-//     e.preventDefault(); // prevents page reloading
-//     socket.emit('chat message', inputField.value());
-//     inputField.val('');
-//     return false;
+//   $('#lid').click(function(e){
+//     socket.emit('chat message');
 //   });
 //   socket.on('chat message', function(msg){
-//     messageField.appendChild(chatItem).text(msg);
+//     $('#lid').toggleClass('lid-rotate');
+//     $('.birdSound').trigger("play");
 //   });
 // });
 
@@ -21,10 +15,17 @@ $(function () {
     socket.emit('chat message');
   });
   socket.on('chat message', function(msg){
-    $('#lid').toggleClass('lid-rotate');
-    $('.birdSound').trigger("play");
+    setTimeout(function () {
+      $('#lid').removeClass('lid-rotate');
+      $('#bird').removeClass('lean-in');
+    }, 2000);
+    $('#lid').addClass('lid-rotate');
+    $('.birdSound').trigger('play');
+    $('#bird').addClass('lean-in');
   });
 });
+
+// NEED VANILLA
 
 // function birdChime(){
 //   var socket = io();
@@ -36,10 +37,3 @@ $(function () {
 //     lid.classList.add("lid-rotate");
 //   });
 // }
-  //
-  //
-  // function moveLid() {
-  //   var socket = io();
-  //   var lid = document.getElementById('lid');
-  //   lid.classList.add("lid-rotate");
-  // }
