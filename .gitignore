@@ -1,0 +1,5 @@
+# Ignore silly OsX Finder files
+.DS_Store
+
+#TMI
+node_modules
