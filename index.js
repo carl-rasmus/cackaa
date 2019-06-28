@@ -9,7 +9,7 @@ var port = process.env.PORT || 8000;
 app.use(express.static(__dirname + '/www'));
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/www/index.html');
 });
 
 io.on('connection', function(socket){
